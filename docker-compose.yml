@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: laravel_app
+    container_name: vendimia_app
+    environment:
+      - APP_ENV=production
+      - APP_DEBUG=false
+      - DB_CONNECTION=pgsql
+      - DB_HOST=172.30.0.48
+      - DB_PORT=5432
+      - DB_DATABASE=vendimia2024
+      - DB_USERNAME=agustinvidela
+      - DB_PASSWORD=agustin1234
+    volumes: 
+      - .:/var/www
+    networks:
+      - laravel_network
+
+  webserver:
+    image: nginx:latest
+    container_name: nginx_web
+    ports:
+      - "8090:80"
+    volumes:
+      - .:/var/www
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - app
+    networks:
+      - laravel_network
+
+#   vite:
+#     image: node:18-alpine
+#     container_name: vite_builder
+#     working_dir: /var/www
+#     volumes:
+#       - .:/var/www
+#     command: ["sh", "-c", "npm install && npm run dev"]
+#     ports:
+#       - "5173:5173" # El puerto donde Vite servirá los archivos
+#     depends_on:
+#       - app
+#     networks:
+#       - laravel_network
+
+networks:
+  laravel_network:
