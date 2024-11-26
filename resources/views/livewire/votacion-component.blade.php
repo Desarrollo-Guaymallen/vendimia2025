@@ -6,8 +6,12 @@
             distritos con un proyecto concreto, a realizar en un año y que tenga el foco puesto en las necesidades de
             los habitantes de la comuna.
             <br>
-            Una de ellas va a representar al departamento en la Fiesta de la Vendimia 2025 y competir por la
-            corona nacional.
+            Recordá que en esta primera instancia de elección, consiste en votar a la representante del distrito que va
+            a representar al mismo en la
+            segunda instancia (Votación representantes departamentales), por lo que pueden haber varias candidatas con
+            el mismo distrito.
+            {{-- Una de ellas va a representar al departamento en la Fiesta de la Vendimia 2025 y competir por la
+            corona nacional. --}}
             <br>
             Recordá que solo vas a poder votar <b>una vez.</b>
             <br>
@@ -27,7 +31,7 @@
                                     <source src="{{ asset($reina->foto) }}" type="video/mp4">
                                 </video> --}}
                                 <img src="{{ asset('img/reinas/' . $reina->foto) }}" class="img-fluid rounded-top"
-                                    alt="" style="height: 400px;" />
+                                    alt="" />
 
                                 <div class="card-body">
                                     <h5 class="card-title fw-bold d-flex justify-content-center">{{ $reina->nombre }}
@@ -37,15 +41,15 @@
                                 additional
                                 content. This content is a little bit longer.</p> --}}
                                     @if (!$voto)
-                                        <div class="d-flex justify-content-center">
-                                            <button type="button" class="btn text-white"
-                                                style="background-color: #5BC5F2; width: 200px; padding: 5px 10px; font-size: 16px;"
-                                                wire:click="votar({{ $reina->id }})">
-                                                Votar
-                                            </button>
-
-
-                                        </div>
+                                        @if ($reina->distritos->nombre != 'EL BERMEJO')
+                                            <div class="d-flex justify-content-center">
+                                                <button type="button" class="btn text-white"
+                                                    style="background-color: #5BC5F2; width: 200px; padding: 5px 10px; font-size: 16px;"
+                                                    wire:click="votar({{ $reina->id }})">
+                                                    Votar
+                                                </button>
+                                            </div>
+                                        @endif
                                     @endif
                                 </div>
                             </div>

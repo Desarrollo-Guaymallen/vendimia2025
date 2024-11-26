@@ -26,49 +26,48 @@ class VotacionComponent extends Component
 
             switch ($this->categoria) {
                 case 1:
-                    if (User::where('dni', Auth::guard('web')->user()->dni)->where('artes_gral', 0)->first()) {
+                    if (User::where('dni', Auth::guard('web')->user()->dni)->where('artes', 0)->first()) {
                         $voto = false;
                     } else {
                         $voto = true;
                     }
                     break;
                 case 2:
-                    if (User::where('dni', Auth::guard('web')->user()->dni)->where('educacion_gral', 0)->first()) {
+                    if (User::where('dni', Auth::guard('web')->user()->dni)->where('educacion', 0)->first()) {
                         $voto = false;
                     } else {
                         $voto = true;
                     }
                     break;
                 case 3:
-                    if (User::where('dni', Auth::guard('web')->user()->dni)->where('salud_gral', 0)->first()) {
+                    if (User::where('dni', Auth::guard('web')->user()->dni)->where('salud', 0)->first()) {
                         $voto = false;
                     } else {
                         $voto = true;
                     }
                     break;
                 case 4:
-                    if (User::where('dni', Auth::guard('web')->user()->dni)->where('deportes_gral', 0)->first()) {
+                    if (User::where('dni', Auth::guard('web')->user()->dni)->where('deportes', 0)->first()) {
                         $voto = false;
                     } else {
                         $voto = true;
                     }
                     break;
                 case 5:
-                    if (User::where('dni', Auth::guard('web')->user()->dni)->where('laborsocial_gral', 0)->first()) {
+                    if (User::where('dni', Auth::guard('web')->user()->dni)->where('laborsocial', 0)->first()) {
                         $voto = false;
                     } else {
                         $voto = true;
                     }
                     break;
                 case 6:
-                    if (User::where('dni', Auth::guard('web')->user()->dni)->where('economia_gral', 0)->first()) {
+                    if (User::where('dni', Auth::guard('web')->user()->dni)->where('economia', 0)->first()) {
                         $voto = false;
                     } else {
                         $voto = true;
                     }
                     break;
             }
-
 
             return view('livewire.cultores.votacion-component', compact('cultores', 'voto'));
         } else {
@@ -80,12 +79,12 @@ class VotacionComponent extends Component
     public function votar($id_cultor)
     {
         $user = User::where('dni', Auth::user()->dni)->first();
-        $cultor_valid = Cultores::where('id', $id_cultor)->where('categoria_gral', $this->categoria)->first();
+        $cultor_valid = Cultores::where('id', $id_cultor)->where('categoria', $this->categoria)->first();
         if ($this->categoria == 1) {
             if ($cultor_valid) {
-                if ($user->artes_gral == 0) {
+                if ($user->artes == 0) {
                     $user->update([
-                        'artes_gral' => $id_cultor,
+                        'artes' => $id_cultor,
                     ]);
                     $this->emit('notificacion', [
                         'icon' => 'success',
@@ -105,9 +104,9 @@ class VotacionComponent extends Component
             }
         } else if ($this->categoria == 2) {
             if ($cultor_valid) {
-                if ($user->educacion_gral == 0) {
+                if ($user->educacion == 0) {
                     $user->update([
-                        'educacion_gral' => $id_cultor,
+                        'educacion' => $id_cultor,
                     ]);
                     $this->emit('notificacion', [
                         'icon' => 'success',
@@ -127,9 +126,9 @@ class VotacionComponent extends Component
             }
         } else if ($this->categoria == 3) {
             if ($cultor_valid) {
-                if ($user->salud_gral == 0) {
+                if ($user->salud == 0) {
                     $user->update([
-                        'salud_gral' => $id_cultor,
+                        'salud' => $id_cultor,
                     ]);
                     $this->emit('notificacion', [
                         'icon' => 'success',
@@ -149,9 +148,9 @@ class VotacionComponent extends Component
             }
         } else if ($this->categoria == 4) {
             if ($cultor_valid) {
-                if ($user->deportes_gral == 0) {
+                if ($user->deportes == 0) {
                     $user->update([
-                        'deportes_gral' => $id_cultor,
+                        'deportes' => $id_cultor,
                     ]);
                     $this->emit('notificacion', [
                         'icon' => 'success',
@@ -171,9 +170,9 @@ class VotacionComponent extends Component
             }
         } else if ($this->categoria == 5) {
             if ($cultor_valid) {
-                if ($user->laborsocial_gral == 0) {
+                if ($user->laborsocial == 0) {
                     $user->update([
-                        'laborsocial_gral' => $id_cultor,
+                        'laborsocial' => $id_cultor,
                     ]);
                     $this->emit('notificacion', [
                         'icon' => 'success',
@@ -193,9 +192,9 @@ class VotacionComponent extends Component
             }
         } else if ($this->categoria == 6) {
             if ($cultor_valid) {
-                if ($user->economia_gral == 0) {
+                if ($user->economia == 0) {
                     $user->update([
-                        'economia_gral' => $id_cultor,
+                        'economia' => $id_cultor,
                     ]);
                     $this->emit('notificacion', [
                         'icon' => 'success',

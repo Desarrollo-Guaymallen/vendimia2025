@@ -60,8 +60,7 @@
 
                             <div class="row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn text-white"
-                                        style="background-color:  #5BC5F2;">
+                                    <button type="submit" class="btn text-white" style="background-color:  #5BC5F2;">
                                         {{ __('Ingresar') }}
                                     </button>
 
@@ -80,8 +79,7 @@
         </div>
         <div class="row mb-3 justify-content-center">
             <div class="col-md-auto">
-                <p class="fs-5">En caso de no estar registrado <a
-                        href="{{ route('register') }}" class="btn text-dark"
+                <p class="fs-5">En caso de no estar registrado <a href="{{ route('register') }}" class="btn text-dark"
                         style="background-color: turquoise;">Registrese aquí</a></p>
             </div>
         </div>
@@ -92,7 +90,12 @@
                     <br>
                     1. Registrate (es requisito excluyente tener DNI con domicilio en Guaymallén).
                     <br>
-                    2. Votá a un candidata a través de la foto y frase que lo identifica (podés elegir solo <b>*una vez*</b>)
+                    @if ($type == 'cultores')
+                    2. Votá a un cultor por categoría a traves de la foto y frase que lo identifica
+                    @else
+                        2. Votá a un candidata a través de la foto que lo identifica (podés elegir solo <b>*una
+                            vez*</b>)
+                    @endif
                 </p>
             </div>
         </div>

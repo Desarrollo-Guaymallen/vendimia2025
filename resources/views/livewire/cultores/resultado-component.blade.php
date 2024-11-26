@@ -186,6 +186,9 @@
                     message: 'Votantes: ' + {{ $total_categoria_artes_gral }}
                 }
             ],
+            order: [
+                [0, 'desc']
+            ],
             language: {
                 url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
             },

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Distrital;
 use App\Models\Reina;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $reinas = Reina::inRandomOrder()->get();
+    $reinas = Distrital::inRandomOrder()->get();
     return view('welcome', compact('reinas'));
 });
 

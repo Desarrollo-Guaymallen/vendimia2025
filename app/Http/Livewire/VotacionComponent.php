@@ -57,7 +57,7 @@ class VotacionComponent extends Component
                 ]);
                 $this->emit('notificacion', [
                     'icon' => 'success',
-                    'msj' => 'El voto ha sido registrado correctamente<br>Su elección: ' . $reina_valida->nombre . ' (' . $reina_valida->distrito . ')',
+                    'msj' => 'El voto ha sido registrado correctamente<br>Su elección: ' . $reina_valida->nombre . ' (' . $reina_valida->distritos->nombre . ')',
                 ]);
             } else {
                 $this->emit('notificacion', [

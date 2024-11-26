@@ -16,6 +16,7 @@ class ResultadoComponent extends Component
 
         $votos = Distrital::leftjoin('residentes', 'distrital.id', '=', 'residentes.distrital')
             ->selectRaw("count(residentes.distrital) as voto_candidata, count(CASE WHEN residentes.tipo = 'comision' THEN 1 end) as voto_comision, 
+                count(CASE WHEN residentes.tipo = 'vecino' THEN 1 end) as voto_vecino, 
             distrital.nombre, distrital.distrito")
             ->groupBy('distrital.nombre', 'distrital.distrito')
             ->orderByDesc('voto_candidata')
@@ -28,6 +29,7 @@ class ResultadoComponent extends Component
             ->orderByDesc('voto_candidata')
             ->toSql();
 
+        $total_publico = User::where('tipo', 'vecino')->where('distrital', '!=', 0)->count();
         $total_comision = User::where('tipo', 'comision')->where('distrital', '!=', 0)->count();
 
         // $resultados = $votos->union($comision)->get();
@@ -35,6 +37,7 @@ class ResultadoComponent extends Component
         return view('livewire.resultado-component', compact(
             'total_votos',
             'votos',
+            'total_publico',
             'total_comision',
             'sql',
         ));
